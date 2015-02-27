@@ -1,5 +1,5 @@
 
-# Redis
+# Redis (draft)
 
 From the terminal, pop in:
 
