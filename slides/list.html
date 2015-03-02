@@ -1,0 +1,36 @@
+<h2>Lists</h2>
+
+<pre class="column double">
+   <code data-trim>
+> rpush mylist A
+(integer) 1
+> rpush mylist B
+(integer) 2
+> lpush mylist first
+(integer) 3
+> lrange mylist 0 -1
+1) "first"
+2) "A"
+3) "B"
+  </code>
+</pre>
+
+<pre class="column double">
+  <code data-trim>
+> rpush mylist a b c
+(integer) 3
+> rpop mylist
+"c"
+> rpop mylist
+"b"
+> rpop mylist
+"a"
+  </code>
+</pre>
+
+<h3 class="fragment" data-fragment-index="1" style="clear:both">Quelques cas d'utilisation</h4>
+
+<ul>
+  <li class="fragment" data-fragment-index="2">Dernier item vu ou posté (Twitter)</li>
+  <li class="fragment" data-fragment-index="3">Communication entre process (Ruby/Resque)</li>
+</ul>

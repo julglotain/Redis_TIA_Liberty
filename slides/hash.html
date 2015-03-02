@@ -1,0 +1,20 @@
+<h2>Hash</h2>
+
+<pre>
+  <code data-trim>
+> hmset user:1000 username antirez birthyear 1977 verified 1
+OK
+> hget user:1000 username
+"antirez"
+> hget user:1000 birthyear
+"1977"
+> hgetall user:1000
+1) "username"
+2) "antirez"
+3) "birthyear"
+4) "1977"
+5) "verified"
+6) "1"
+  </code>
+</pre>
+  

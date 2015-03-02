@@ -1,1 +1,29 @@
-["index.md"]
+[
+	"titre.html",
+	"agenda.html",
+	[
+	  "definition1.html", 
+	  "definition2.html", 
+	  "definition3.html", 
+	  "definition4.html"
+	],
+	"cas_utilisation.html",
+	"comment.html",
+	[
+	  "type_structure.html",
+	  "string.html", 
+	  "list.html", 
+	  "hash.html", 
+	  "set.html", 
+	  "sortedset.html"
+	],
+	[
+	  "autre_commandes.html",
+	  "transactions.html", 
+	  "pub_sub.html"
+	],
+	"retour_experience.html",
+	"architecture.html",
+	"question.html",
+	"final.html"
+]

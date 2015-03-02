@@ -1,0 +1,38 @@
+<h2>Primitive value (String, Integer, float)</h2>
+
+<pre class="column triple">
+  <code data-trim>
+> set mykey somevalue
+OK
+> get mykey
+"somevalue"
+> mset a 10 b 20 c 30
+OK
+> mget a b c
+1) "10"
+2) "20"
+3) "30"
+  </code>
+</pre>
+  
+<pre class="column triple">
+  <code data-trim>
+> set counter 100
+OK
+> incr counter
+(integer) 101
+> incrby counter 50
+(integer) 152
+  </code>
+</pre>
+ 
+<pre class="column triple">
+  <code data-trim>
+> type mykey
+string
+> exists mykey
+(integer) 1
+> del mykey
+(integer) 1
+  </code>
+</pre>
