@@ -30,6 +30,9 @@ module.exports = (grunt) ->
             jshint:
                 files: ['js/*.js']
                 tasks: ['jshint']
+                options:
+                    globals:
+                        Reveal: true
         
             sass:
                 files: ['css/source/theme.scss']
@@ -48,7 +51,7 @@ module.exports = (grunt) ->
                     port: 9000
                     # Change hostname to '0.0.0.0' to access
                     # the server from outside.
-                    hostname: '0.0.0.0'
+                    hostname: 'localhost'
                     base: '.'
                     open: true
                     livereload: true
@@ -64,9 +67,9 @@ module.exports = (grunt) ->
             all: ['Gruntfile.coffee']
 
         jshint:
-
             options:
-                jshintrc: '.jshintrc'
+                globals:
+                    Reveal: true
 
             all: ['js/*.js']
 

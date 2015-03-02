@@ -1,1 +1,25 @@
-["index.md"]
+[
+    {
+    	"src":"index.md"
+    },
+    {
+    	"src":"form.html",
+    	"votable": true,
+    	"data": {
+    		"topic":"Form1"
+    	}
+    },
+    [
+	    {
+	    	"src":"form2.html"
+	    },
+	    {
+		    "src":"form.html",
+	    	"votable": true,
+	    	"data": {
+	    		"topic":"Form pokpokpok"
+	    	}
+	    }
+    ]
+    
+]

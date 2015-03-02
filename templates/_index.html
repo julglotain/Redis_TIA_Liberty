@@ -13,11 +13,12 @@
 
         <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
     
-        <link rel="stylesheet" href="css/theme.css" id="theme">
-    
+        <link rel="stylesheet" href="bower_components/reveal.js/css/theme/default.css" id="theme">
 
         <!-- For syntax highlighting -->
-        <link rel="stylesheet" href="bower_components/reveal-highlight-themes/styles/zenburn.css" id="highlight-theme">
+        <link rel="stylesheet" href="bower_components/reveal-highlight-themes/styles/github.css" id="highlight-theme">
+
+        <link rel="stylesheet" href="css/vote-machine.css" id="theme">
 
         <!-- If the query includes 'print-pdf', use the PDF print sheet -->
         <script>
@@ -40,7 +41,6 @@
         <div class="reveal">
 
             <div class="slides">
-
                 <% _.forEach(slides, function(slide) { %>
                     <% if (!_.isArray(slide)) { %>
                         <%= section(slide) %>
@@ -57,36 +57,10 @@
 
         </div>
 
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
         <script src="bower_components/reveal.js/js/reveal.min.js"></script>
-        <script>
-            // Configure Reveal
-            // Full list of configuration options available here:
-            // https://github.com/hakimel/reveal.js#configuration
-            Reveal.initialize({
-                controls: true,
-                progress: true,
-                history: true,
-                center: true,
-
-                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-                // Optional libraries used to extend on reveal.js
-                dependencies: [
-                    { src: 'bower_components/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                    { src: 'bower_components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: 'bower_components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: 'bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-                    { src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-                    // { src: 'bower_components/reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
-                    //{ src: 'bower_components/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-
-                    { src: 'js/loadhtmlslides.js', condition: function() { return !!document.querySelector( '[data-html]' ); } }
-                ]
-            });
-        </script>
+        <script src="js/init-reveal-master.js">
 
     </body>
 

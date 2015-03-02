@@ -1,0 +1,12 @@
+.vote-btn {
+	border-radius: 4px;
+	color: #fff;
+}
+
+.vote-btn--yes {
+	background-color: green;
+}
+
+.vote-btn--no {
+	background-color: red;
+}
