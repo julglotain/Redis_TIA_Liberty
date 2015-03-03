@@ -6,7 +6,8 @@
 }
 #topic-slide {
 	text-align: center;
-	margin-top: 20%;
+	margin-top: 15%;
+	word-spacing: 
 }
 
 #vote-form {
@@ -82,4 +83,15 @@
 .global-votes-tendency .separator {
     width: 0%;
     height: 100%;
+}
+.notification-vote-success {
+	position: absolute;
+	background-color: rgba(76,174,76,0.7);
+	color: white;
+	top: 5%;
+	left: 5%;
+	border-radius: 4px;
+	padding: 2%;
+	font-family: "League Gothic", Impact, sans-serif;
+	font-size: 26px;
 }

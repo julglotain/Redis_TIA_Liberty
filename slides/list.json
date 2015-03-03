@@ -54,7 +54,7 @@
         "src":"comment.html",
         "votable": true,
         "data": {
-            "topic": "Comment"
+            "topic": "Comment fonctionne Redis ?"
         }
     },
 	[

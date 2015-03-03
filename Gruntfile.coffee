@@ -10,10 +10,10 @@ module.exports = (grunt) ->
                     livereload: true
                 files: [
                     'index.html'
-                    'protected/master.html'
+                    'master.html'
                     'slides/{,*/}*.{md,html}'
-                    'js/**/*.js'
-                    'css/*.css'
+                    'public/js/**/*.js'
+                    'public/css/*.css'
                 ]
 
             index:
@@ -30,21 +30,21 @@ module.exports = (grunt) ->
                 tasks: ['coffeelint']
 
             jshint:
-                files: ['js/**/*.js']
+                files: ['public/js/**/*.js']
                 tasks: ['jshint']
                 options:
                     globals:
                         Reveal: true
         
             sass:
-                files: ['css/source/theme.scss']
+                files: ['public/css/source/theme.scss']
                 tasks: ['sass']
 
         sass:
 
             theme:
                 files:
-                    'css/theme.css': 'css/source/theme.scss'
+                    'public/css/theme.css': 'public/css/source/theme.scss'
         
         connect:
 
@@ -57,15 +57,6 @@ module.exports = (grunt) ->
                     base: '.'
                     open: false
                     livereload: true
-            server:
-                options:
-                    port: 8000,
-                    hostname: '*',
-                    onCreateServer: (server, connect, options) ->
-                        io = require('socket.io').listen(server)
-                        io.sockets.on('connection') ->
-                            console.log('rptou')
-        
 
         coffeelint:
 
@@ -82,7 +73,7 @@ module.exports = (grunt) ->
                 globals:
                     Reveal: true
 
-            all: ['js/*.js']
+            all: ['public/js/*.js','!public/js/lib/*.js']
 
         copy:
 
@@ -91,14 +82,15 @@ module.exports = (grunt) ->
                     expand: true
                     src: [
                         'slides/**'
-                        'bower_components/**'
-                        'js/**/**'
-                        'css/*.css'
+                        'public/bower_components/**'
+                        'public/js/**/**'
+                        'public/css/*.css',
+                        'public/images/**'
                     ]
                     dest: 'dist'
                 },{
                     expand: true
-                    src: ['index.html','protected/master.html']
+                    src: ['index.html','master.html']
                     dest: 'dist'
                     filter: 'isFile'
                 }]
@@ -137,7 +129,7 @@ module.exports = (grunt) ->
                     grunt.template.process sectionTemplate, data:
                         slide:
                             slide
-            grunt.file.write 'protected/master.html', html
+            grunt.file.write 'master.html', html
 
     grunt.registerTask 'test',
         '*Lint* javascript and coffee files.', [
