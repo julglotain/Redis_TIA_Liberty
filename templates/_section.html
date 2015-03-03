@@ -1,6 +1,6 @@
 <% if (!_.isString(slide) && !_.isArray(slide) && _.isObject(slide)) { %>
-    <section <% if (_.isString(slide.src)) { %>data-<% if (slide.src.indexOf('.html') !== -1) { %>html<% } else { %>markdown<% }%>="slides/<%= slide.src %>"<% } %><% _.each(slide.data, function (val, attr) { %>	data-slide-<%= attr %>="<%= val %>"<% }) %> <% if (slide.votable) { %> data-votable<% } %>>
+    <section <% if (_.isString(slide.src)) { %>data-<% if (slide.src.indexOf('.html') !== -1) { %>html<% } else { %>markdown<% }%>="../slides/<%= slide.src %>"<% } %><% _.each(slide.data, function (val, attr) { %>	data-slide-<%= attr %>="<%= val %>"<% }) %> <% if (slide.votable) { %> data-votable<% } %>>
 	</section>
 <% } %><% if (_.isString(slide)) { %>
-    <section data-<% if (slide.src.indexOf('.html') !== -1) { %>html<% } else { %>markdown<% }%>="slides/<%= slide %>"></section>
+    <section data-<% if (slide.src.indexOf('.html') !== -1) { %>html<% } else { %>markdown<% }%>="../slides/<%= slide %>"></section>
 <% } %>
