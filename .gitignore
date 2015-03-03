@@ -5,3 +5,4 @@ dist
 .sass-cache
 index.html
 protected
+*.origin

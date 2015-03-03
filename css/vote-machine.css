@@ -1,6 +1,13 @@
 #main {
 	margin: 2%;
 }
+#presentation-title {
+	text-align: right;
+}
+#topic-slide {
+	text-align: center;
+	margin-top: 20%;
+}
 
 #vote-form {
 	margin-top: 4%;

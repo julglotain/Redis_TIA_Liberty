@@ -14,6 +14,7 @@
 			var nextindexv;
 
 			var fragmentindex = Reveal.getIndices().f;
+
 			if (typeof fragmentindex == 'undefined') {
 				fragmentindex = 0;
 			}
@@ -48,8 +49,9 @@
 		notify( Reveal.getCurrentSlide(), Reveal.getIndices().h, Reveal.getIndices().v, event.origin );
 	};
 
-	Reveal.addEventListener( 'fragmentshown', fragmentNotify );
-	Reveal.addEventListener( 'fragmenthidden', fragmentNotify );
+	// WE don't want to let clients of fragment events
+	// Reveal.addEventListener( 'fragmentshown', fragmentNotify );
+	// Reveal.addEventListener( 'fragmenthidden', fragmentNotify );
 
 	// let's notify the server of the current state of slide for the future client being 
 	// aware of initialisation data

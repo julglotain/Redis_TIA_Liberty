@@ -1,0 +1,15 @@
+<h2>Transaction</h2>
+
+<pre>
+  <code data-trim>
+> MULTI
+OK
+> INCR foo
+QUEUED
+> INCR bar
+QUEUED
+> EXEC
+1) (integer) 1
+2) (integer) 1
+  </code>
+</pre>

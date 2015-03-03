@@ -27,9 +27,9 @@ Reveal.initialize({
     var multiplex = socketConfig;
     var socketId = multiplex.id;
     var socket = io.connect(multiplex.server);
-    var currentTopic = $("#current-topic");
+    var currentTopic = $("#current-topic"), voteBtnGroup = $("#vote-btn-group"), topicSlide = $('#main #topic-slide');
 
-    var allSlidesData;
+    var allSlidesData, lastSlideHIndex, lastSlideVIndex;
 
     socket.on(multiplex.id, function(data) {
 
@@ -43,10 +43,10 @@ Reveal.initialize({
 
     });
 
-    var testAnim = function (x) {
-        $('#main form')
+    var animate = function (animation) {
+        topicSlide
                 .removeClass()
-                .addClass(x + ' animated')
+                .addClass(animation + ' animated')
                 .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
                     $(this).removeClass();
                 });
@@ -61,12 +61,35 @@ Reveal.initialize({
         var slide = !$.isArray(allSlidesData[currentSlide.indexh]) 
                             ? allSlidesData[currentSlide.indexh] : allSlidesData[currentSlide.indexh][currentSlide.indexv];
 
-        console.log(slide);
+        console.log(currentSlide);
+
+        if(slide.votable){
+            voteBtnGroup.show();
+        } else {
+            voteBtnGroup.hide();
+        }
 
         if(slide.data){
-            currentTopic.text(slide.data.topic);
-            testAnim("zoomInRight");
+
+            if(slide.data.topic){
+                currentTopic
+                    .show()
+                    .text(slide.data.topic);
+                if(lastSlideHIndex < currentSlide.indexh) {
+                    animate("zoomInRight");
+                } else if(lastSlideHIndex === currentSlide.indexh) {
+
+                } else {
+                    animate("zoomInLeft");
+                }
+            } else {
+                currentTopic.hide();
+            }
+            
         }
+
+        lastSlideHIndex = currentSlide.indexh;
+        lastSlideVIndex = currentSlide.indexv;
 
     }
 
