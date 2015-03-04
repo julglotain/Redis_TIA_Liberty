@@ -11,7 +11,7 @@
         // Example values. To generate your own, see the socket.io server instructions.
         id: socketConfig.id, // id, obtained from socket.io server
         secret: socketConfig.secret, // null so the clients do not have control of the master presentation
-        url: socketConfig.server // Location of socket.io server
+        url: socketConfig.fromMaster // Location of socket.io server
     },
 
     // Optional libraries used to extend on reveal.js

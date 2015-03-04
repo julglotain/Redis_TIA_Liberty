@@ -2,8 +2,9 @@
 
     var multiplex = socketConfig;
     var socketId = multiplex.id;
-    var socket = io.connect(multiplex.server);
-    var currentTopic = $("#current-topic"), voteBtnGroup = $("#vote-btn-group"), topicSlide = $('#main #topic-slide');
+    var socket = io.connect(multiplex.server.fromClient);
+    var currentTopic = $("#current-topic"), voteBtnGroup = $("#vote-btn-group"),
+        topicSlide = $('#main #topic-slide'), specialContent = $("#special-content");
 
     var allSlidesData, _currentSlide, lastSlideHIndex, lastSlideVIndex;
 
@@ -51,16 +52,26 @@
             } else {
                 currentTopic.hide();
             }
+
+            if(slide.data.specialContent){
+                specialContent.html(slide.data.specialContent);
+                specialContent.show();
+            } else {
+                specialContent.hide();
+            }
             
+        } else {
+            currentTopic.hide();
+            specialContent.hide();
         }
 
         // first we check if user has already voted for the slide 
-        var deffered = $.get('/api/vote/' + currentSlide.indexh + '/' + currentSlide.indexv + '/check');
+        var deffered = $.get('/api/vote/' + currentSlide.indexh + '/' + currentSlide.indexv + '/check' + '?=' + new Date().getTime());
         deffered
             .success(function(data){
 
                 var hasAlreadyVoted = (data.result === 'OK') ? false : true;
-
+               
                 if(hasAlreadyVoted || !slide.votable){
                     voteBtnGroup.hide();
                 } else {

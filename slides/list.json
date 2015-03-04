@@ -2,8 +2,7 @@
     {
         "src": "titre.html",
         "data": {
-            "topic": "Welcome",
-            "specialContent": "WELCOME"
+            "specialContent": "<h3>Welcome</h3><h3>Bienvenido</h3><h3>Wilkomen</h3>"
         }
     },
     {
@@ -149,7 +148,8 @@
         "src": "final.html",
         "votable": false,
         "data": {
-            "topic": "The end"
+            "topic": "The end",
+            "specialContent": "<a href=\"http://try.redis.io\" target=\"_blank\">try.redis.io</a>"
         }
     }
 ]
