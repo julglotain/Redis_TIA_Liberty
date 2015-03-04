@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Redis</title>
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="public/bower_components/reveal.js/css/reveal.min.css">
+    
+        <link rel="stylesheet" href="public/bower_components/reveal.js/css/theme/default.css" id="theme">
+
+        <link rel="stylesheet" href="public/css/theme.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="public/bower_components/reveal-highlight-themes/styles/github.css" id="highlight-theme">
+
+        <link rel="stylesheet" href="public/css/vote-machine.css" id="theme">
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="global-votes-tendency">
+            <div class="bar positive"></div><div class="separator"></div><div class="bar negative"></div>
+        </div>
+
+        <div class="reveal">
+
+            <div class="slides">
+                <% _.forEach(slides, function(slide) { %>
+                    <% if (!_.isArray(slide)) { %>
+                        <%= section(slide) %>
+                    <% } %>
+                    <% if (_.isArray(slide)) { %>
+                        <section>
+                            <% _.forEach(slide, function(verticalslide) { %>
+                                <%= section(verticalslide) %>
+                            <% }); %>
+                        </section>
+                    <% } %>
+                <% }); %>
+            </div>
+
+        </div>
+
+        <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="public/bower_components/reveal.js/lib/js/head.min.js"></script>
+        <script src="public/bower_components/reveal.js/js/reveal.min.js"></script>
+        <script src="public/js/lib/socket.io-1.3.4.js"></script>
+        <script src="public/js/socket-config.js"></script>
+        <script src="public/js/init/master.js"></script>
+
+    </body>
+
+</html>

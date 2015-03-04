@@ -1,0 +1,16 @@
+<h2>Sorted Set</h2>
+
+<pre>
+  <code data-trim>
+> zadd hackers 1953 "Richard Stallman"
+(integer) 1
+> zadd hackers 1969 "Linus Torvalds"
+(integer) 1
+> zadd hackers 1912 "Alan Turing"
+(integer) 1
+> zrange hackers 0 -1
+1) "Alan Turing"
+3) "Richard Stallman"
+5) "Linus Torvalds"
+  </code>
+</pre>

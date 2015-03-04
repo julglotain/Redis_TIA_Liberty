@@ -10,36 +10,41 @@ module.exports = (grunt) ->
                     livereload: true
                 files: [
                     'index.html'
+                    'master.html'
                     'slides/{,*/}*.{md,html}'
-                    'js/*.js'
-                    'css/*.css'
+                    'public/js/**/*.js'
+                    'public/css/*.css'
                 ]
 
             index:
                 files: [
                     'templates/_index.html'
+                    'templates/_master.html'
                     'templates/_section.html'
                     'slides/list.json'
                 ]
-                tasks: ['buildIndex']
+                tasks: ['buildIndexClient', 'buildIndexMaster']
 
             coffeelint:
                 files: ['Gruntfile.coffee']
                 tasks: ['coffeelint']
 
             jshint:
-                files: ['js/*.js']
+                files: ['public/js/**/*.js']
                 tasks: ['jshint']
+                options:
+                    globals:
+                        Reveal: true
         
             sass:
-                files: ['css/source/theme.scss']
+                files: ['public/css/source/theme.scss']
                 tasks: ['sass']
 
         sass:
 
             theme:
                 files:
-                    'css/theme.css': 'css/source/theme.scss'
+                    'public/css/theme.css': 'public/css/source/theme.scss'
         
         connect:
 
@@ -50,7 +55,7 @@ module.exports = (grunt) ->
                     # the server from outside.
                     hostname: '0.0.0.0'
                     base: '.'
-                    open: true
+                    open: false
                     livereload: true
 
         coffeelint:
@@ -64,11 +69,11 @@ module.exports = (grunt) ->
             all: ['Gruntfile.coffee']
 
         jshint:
-
             options:
-                jshintrc: '.jshintrc'
+                globals:
+                    Reveal: true
 
-            all: ['js/*.js']
+            all: ['public/js/*.js','!public/js/lib/*.js']
 
         copy:
 
@@ -77,28 +82,43 @@ module.exports = (grunt) ->
                     expand: true
                     src: [
                         'slides/**'
-                        'bower_components/**'
-                        'js/**'
-                        'css/*.css'
+                        'public/bower_components/**'
+                        'public/js/**/**'
+                        'public/css/*.css',
+                        'public/images/**'
                     ]
-                    dest: 'dist/'
+                    dest: 'dist'
                 },{
                     expand: true
-                    src: ['index.html']
-                    dest: 'dist/'
+                    src: ['index.html','master.html']
+                    dest: 'dist'
                     filter: 'isFile'
                 }]
-
-        
 
 
     # Load all grunt tasks.
     require('load-grunt-tasks')(grunt)
 
-    grunt.registerTask 'buildIndex',
+    grunt.registerTask 'buildIndexClient',
         'Build index.html from templates/_index.html and slides/list.json.',
         ->
             indexTemplate = grunt.file.read 'templates/_index.html'
+            # sectionTemplate = grunt.file.read 'templates/_voterForm.html'
+            # slides = grunt.file.readJSON 'slides/list.json'
+
+            # html = grunt.template.process indexTemplate, data:
+            #     slides:
+            #         slides
+            #     section: (slide) ->
+            #         grunt.template.process sectionTemplate, data:
+            #             slide:
+            #                 slide
+            grunt.file.write 'index.html', indexTemplate
+
+    grunt.registerTask 'buildIndexMaster',
+        'Build index.html from templates/_master.html and slides/list.json.',
+        ->
+            indexTemplate = grunt.file.read 'templates/_master.html'
             sectionTemplate = grunt.file.read 'templates/_section.html'
             slides = grunt.file.readJSON 'slides/list.json'
 
@@ -109,7 +129,7 @@ module.exports = (grunt) ->
                     grunt.template.process sectionTemplate, data:
                         slide:
                             slide
-            grunt.file.write 'index.html', html
+            grunt.file.write 'master.html', html
 
     grunt.registerTask 'test',
         '*Lint* javascript and coffee files.', [
@@ -119,7 +139,8 @@ module.exports = (grunt) ->
 
     grunt.registerTask 'serve',
         'Run presentation locally and start watch process (living document).', [
-            'buildIndex'
+            'buildIndexClient'
+            'buildIndexMaster'
             'sass'
             'connect:livereload'
             'watch'
@@ -129,7 +150,8 @@ module.exports = (grunt) ->
         'Save presentation files to *dist* directory.', [
             'test'
             'sass'
-            'buildIndex'
+            'buildIndexClient'
+            'buildIndexMaster'
             'copy'
         ]
 
