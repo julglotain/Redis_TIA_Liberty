@@ -31,32 +31,44 @@
 
 (function(){
 
-    var positiveBar = $('.global-votes-tendency .positive'),
+    var tendencyBar = $('.global-votes-tendency'),
+        positiveBar = $('.global-votes-tendency .positive'),
         negativeBar = $('.global-votes-tendency .negative'),
-        lastPosPct = 100;
+        lastPosPct, lastNegPct;
 
     setInterval(function(){
 
-        var defered = $.get('/api/vote/all/stats');
-        defered.success(function(stats){
+        $.get('/api/vote/all/stats').success(function(stats){
 
             var posPct = stats.yes;
             var negPct = stats.no;
 
-            if(posPct > lastPosPct){console.log("UP tendency")}else{console.log("DOWN tendency")}
+            console.log('Global stats -> yes:' + posPct + '%, no:' + negPct + '%');
+
+            if(posPct || negPct){
+                tendencyBar.show();
+            } else {
+                tendencyBar.hide();
+                return;
+            }
+
+            if(posPct > lastPosPct){
+                var progression = posPct - lastPosPct;
+                console.log("UP tendency +" + progression + "pt.");
+            } else if (posPct === negPct) { 
+            } else if (negPct > lastNegPct) {
+                var regression = lastNegPct - negPct;
+                console.log("DOWN tendency " + regression + "pt.");
+            }
 
             positiveBar.width(posPct + '%');
             negativeBar.width(negPct + '%');
 
             lastPosPct = posPct;
+            lastNegPct = negPct;
 
         });
 
-        // var posPct = Math.random().toFixed(2) * 100;
-        // var negPct = 100 - posPct;
-
-       
-
-    }, 3000);
+    }, 1000);
 
 })();

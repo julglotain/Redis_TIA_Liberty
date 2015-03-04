@@ -14,6 +14,11 @@
 	margin-top: 4%;
 }
 
+#msg-a-vote,
+#vote-btn-group {
+	display: none;
+}
+
 .vote-btn {
 	display: inline-block;
 	padding: 6px 12px;
@@ -52,6 +57,10 @@
 	border-color: #ac2925;
 }
 
+#msg-a-vote {
+	color: #5cb85c;
+}
+
 .global-votes-tendency {
     position: absolute;
 	top: 0;
@@ -59,6 +68,7 @@
 	height: 2%;
 	width: 100%;
 	border-bottom: 2px solid #ac2925;
+	display: none;
 }
 .global-votes-tendency div {
     float: left;

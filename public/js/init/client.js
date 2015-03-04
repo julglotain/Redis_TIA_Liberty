@@ -4,16 +4,24 @@
     var socketId = multiplex.id;
     var socket = io.connect(multiplex.server.fromClient);
     var currentTopic = $("#current-topic"), voteBtnGroup = $("#vote-btn-group"),
-        topicSlide = $('#main #topic-slide'), specialContent = $("#special-content");
+        topicSlide = $('#main #topic-slide'), specialContent = $("#special-content"),
+        msgAVote = $('#msg-a-vote');
 
     var allSlidesData, _currentSlide, lastSlideHIndex, lastSlideVIndex;
 
-    var animate = function (el, animation) {
-        el
-            .removeClass()
-            .addClass(animation + ' animated')
+    var animate = function (el, animation, onceAnimationEnd) {
+
+        if(!onceAnimationEnd){
+            el.removeClass();
+        }
+
+        el.addClass(animation + ' animated')
             .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-                $(this).removeClass();
+                if(onceAnimationEnd){
+                    onceAnimationEnd.call();
+                } else {
+                    $(this).removeClass();
+                }
             });
     };
 
@@ -35,7 +43,7 @@
             if(slide.data.topic){
 
                 // set topic title
-                currentTopic.show().text(slide.data.topic);
+                currentTopic.show().html(slide.data.topic);
 
                 // animate client form view
                 if(lastSlideHIndex < currentSlide.indexh) {
@@ -65,23 +73,33 @@
             specialContent.hide();
         }
 
-        // first we check if user has already voted for the slide 
-        var deffered = $.get('/api/vote/' + currentSlide.indexh + '/' + currentSlide.indexv + '/check' + '?=' + new Date().getTime());
-        deffered
-            .success(function(data){
+        if(slide.votable) {
 
-                var hasAlreadyVoted = (data.result === 'OK') ? false : true;
-               
-                if(hasAlreadyVoted || !slide.votable){
-                    voteBtnGroup.hide();
-                } else {
-                    voteBtnGroup.show();
-                }
+            // first we check if user has already voted for the slide 
+            $.get('/api/vote/' + currentSlide.indexh + '/' + currentSlide.indexv + '/check' + '?' + new Date().getTime())
+                .success(function(data){
 
-                lastSlideHIndex = currentSlide.indexh;
-                lastSlideVIndex = currentSlide.indexv;
-                
-            });
+                    var hasAlreadyVoted = (data.result === 'OK') ? false : true;
+                   
+                    if(hasAlreadyVoted){
+                        voteBtnGroup.hide();
+                        msgAVote.show();
+                    } else {
+                        voteBtnGroup.show();
+                        msgAVote.hide();
+                    }
+                    
+                    lastSlideHIndex = currentSlide.indexh;
+                    lastSlideVIndex = currentSlide.indexv;
+                    
+                });
+
+        } else {
+
+            voteBtnGroup.hide();
+            msgAVote.hide();
+
+        }
         
     }
 
@@ -101,24 +119,20 @@
         });
 
         deffered.success(function(){
-
-            // alert('¡¡ gracias por tu voto !!');
-            // setFormData(_currentSlide);
             voteBtnGroup.hide();
-            var modal = $('<div class="notification-vote-success">¡¡ muchas gracias !!</div>');
+            msgAVote.show();
+            var modal = $('<div class="notification-vote-success"><i class="fa fa-thumbs-o-up"></i></div>');
             modal.appendTo($('body'));
-
+            animate(modal, 'bounceInDown', function(){});
+            
             setTimeout(function(){
-                modal.remove();
-                setFormData(_currentSlide);
-            }, 2000);
+                animate(modal, 'fadeOutUp', function(){
+                    modal.remove();
+                });
+            }, 3000);
 
         });
-        /*
-        deffered.error(function(){
-            alert('muchas gracias para tu voto !!');
-        });
-        */
+
     }
 
     //  bind events

@@ -15,15 +15,10 @@ router.get('/:slideH/:slideV/stats', function(req, res, next) {
 /*  Get global votes stats for all slides  */
 router.get('/all/stats', function(req, res, next) {
 
-	// voteRepo
-	//	.getGlobalSlidesVotesStats(function(stats){
-	//		res.send({stats: stats});
-	//	})
-
-	var posPct = Math.random().toFixed(2) * 100;
-	var negPct = 100 - posPct;
-
-	res.send({yes: posPct, no: negPct});
+	voteRepo
+		.getGlobalSlidesVotesStats(function(stats){
+		res.send(stats);
+	});
 
 });
 

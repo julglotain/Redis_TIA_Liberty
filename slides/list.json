@@ -38,7 +38,7 @@
             "src":"definition4.html",
             "votable": true,
             "data": {
-                "topic": "Définition 4"
+                "topic": "Redis est utilisé par ..."
             }
         }
     ],
@@ -46,7 +46,7 @@
         "src":"cas_utilisation.html",
         "votable": true,
         "data": {
-            "topic": "Les cas d'utilisation"
+            "topic": "Pourquoi Redis ??"
         }
     },
     {
@@ -68,7 +68,7 @@
             "src": "string.html",
             "votable": true,
             "data": {
-                "topic": "Strings"
+                "topic": "Primitive values (String, Integer, float)"
             }
         },
         {
@@ -141,15 +141,16 @@
         "src": "question.html",
         "votable": false,
         "data": {
-            "topic": "Questions ?"
+            "topic": "Questions ??"
         }
     },
     {
         "src": "final.html",
         "votable": false,
         "data": {
-            "topic": "The end",
-            "specialContent": "<a href=\"http://try.redis.io\" target=\"_blank\">try.redis.io</a>"
+            "topic": "Merci!!",
+            "specialContent": "<h3><a href=\"http://try.redis.io\" target=\"_blank\">TRY.REDIS.IO</a></h3><h3>sources <a href=\"https://github.com/mattyep/Redis_TIA_Liberty\" target=\"_blank\">@GITHUB</a></h3>"
+            
         }
     }
 ]
