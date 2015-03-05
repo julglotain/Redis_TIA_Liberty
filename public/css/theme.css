@@ -28,6 +28,12 @@
 .reveal pre.double {
   width: 47%; }
 
+#title-redis-img {
+  width: 480px;
+  border: none;
+  background: none;
+  box-shadow: none; }
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/

@@ -2,7 +2,7 @@
     {
         "src": "titre.html",
         "data": {
-            "specialContent": "<h3>Welcome</h3><h3>Bienvenido</h3><h3>Wilkomen</h3>"
+            "specialContent": "<img id=\"title-redis-img\" class=\"\" src=\"public/images/redis-white.png\"/><h4>Une base de donnée clé-valeur<h4><h6 style=\"color: green; margin-top: 8%;\">voter view</h6>"
         }
     },
     {

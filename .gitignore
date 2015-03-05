@@ -4,5 +4,5 @@ dist
 *.log
 .sass-cache
 index.html
-protected
-*.origin
+master.html
+*.orig

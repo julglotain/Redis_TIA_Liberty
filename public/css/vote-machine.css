@@ -105,3 +105,10 @@
 	font-family: "League Gothic", Impact, sans-serif;
 	font-size: 26px;
 }
+
+#title-redis-img {
+  width: 240px;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
