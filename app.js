@@ -46,8 +46,12 @@ if(!socketOnly){
 		res.sendFile(path.join(__dirname, distPath, 'index.html'));
 	});
 
-	app.get('/master.html', auth, function (req, res) {
+	app.get('/master', auth, function (req, res) {
 		res.sendFile(path.join(__dirname, distPath, 'master.html'));
+	});
+
+	app.get('/dashboard', function (req, res) {
+		res.sendFile(path.join(__dirname, distPath, 'dashboard.html'));
 	});
 
 	/**
