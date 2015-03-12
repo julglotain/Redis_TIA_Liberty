@@ -1,0 +1,13 @@
+body {
+	margin: 2%;
+}
+
+.reveal .slide-widget {
+	display: none;
+	width: 200px;
+	height: 200px;
+	font-size: 20px;
+	float: left;
+	padding: 20px 3px;
+	margin-right: 1%;
+}

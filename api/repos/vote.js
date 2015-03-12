@@ -37,15 +37,14 @@ module.exports = {
 		client.hget('votes:by:slide', 'slide:' + slideCoord + ':yes');
 
 		// get total number of votes for this slide
-		client.scard('voted:' + slideCoord);
+		client.hget('votes:by:slide', 'slide:' + slideCoord + ':no');
 
 		client.exec().then(function(values){
 
-			var stats = {};
-			stats.nbVotes = values[1];
-			stats.nbYes = (stats.nbVotes) ? values[0] : 0;
-			stats.nbNo = (stats.nbVotes) ? (stats.nbVotes - stats.nbYes) : 0;
-			cb(stats);
+			cb({
+				yes: parseInt(values[0]) || 0,
+				no: parseInt(values[1]) || 0
+			});
 
 		});
 

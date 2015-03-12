@@ -21,6 +21,13 @@
             }
         },
         {
+            "src": "architecture.html",
+            "votable": true,
+            "data": {
+                "topic": "Architecture"
+            }
+        },
+        {
             "src":"definition2.html",
             "votable": true,
             "data": {
@@ -128,13 +135,6 @@
         "votable": true,
         "data": {
             "topic": "Retour d'expériences"
-        }
-    },
-    {
-        "src": "architecture.html",
-        "votable": true,
-        "data": {
-            "topic": "Architecture"
         }
     },
     {

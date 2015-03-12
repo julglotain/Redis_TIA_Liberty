@@ -2,6 +2,15 @@ var express = require('express');
 var router = express.Router();
 var voteRepo = require('../repos/vote');
 
+var noCache = function(req, res, next){
+	res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+	res.header('Expires', '-1');
+	res.header('Pragma', 'no-cache');
+	next();
+}
+
+router.all('*', noCache);
+
 /*  Get stats of vote for a single slide  */
 router.get('/:slideH/:slideV/stats', function(req, res, next) {
 

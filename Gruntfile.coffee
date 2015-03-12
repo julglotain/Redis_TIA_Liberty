@@ -13,7 +13,8 @@ module.exports = (grunt) ->
                     'master.html'
                     'slides/{,*/}*.{md,html}'
                     'public/js/**/*.js'
-                    'public/css/*.css'
+                    'public/css/*.css',
+                    'public/templates/**/*.html'
                 ]
 
             index:
@@ -85,7 +86,8 @@ module.exports = (grunt) ->
                         'public/bower_components/**'
                         'public/js/**/**'
                         'public/css/*.css',
-                        'public/images/**'
+                        'public/images/**',
+                        'public/templates/**/*.html'
                     ]
                     dest: 'dist'
                 },{
